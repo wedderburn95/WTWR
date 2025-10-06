@@ -1,0 +1,63 @@
+.confirm-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 670px;
+  height: 280px;
+  top: 271px;
+  left: 385px;
+  border-radius: 20px;
+  border-width: 1px;
+  background: rgba(255, 255, 255, 1);
+
+  z-index: 10;
+}
+
+.confirm-popup__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.p {
+  width: 367px;
+  height: 48px;
+  top: 331px;
+  left: 536px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  background: rgba(0, 0, 0, 1);
+}
+
+.confirm-popup__confirm {
+  background: none;
+  border: none;
+  color: red;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.confirm-popup__cancel {
+  background: none;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.clothes-section__items-btn {
+  width: 116px;
+  height: 24px;
+  top: 8px;
+  border: none;
+  cursor: pointer;
+}

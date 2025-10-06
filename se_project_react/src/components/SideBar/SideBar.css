@@ -1,0 +1,25 @@
+.sidebar {
+  display: inline-block;
+  align-items: center;
+  margin: 5px 0 0 10px;
+}
+
+.sidebar__avatar {
+  width: 40px; /* or your desired width */
+  height: 40px; /* or your desired height */
+  border-radius: 50%; /* if you want a circular avatar */
+  background-image: "../../assets/avatar.png";
+  margin: 0 20px 0 0; /* center the avatar */
+}
+
+.sidebar__username {
+  font-size: 16px;
+}
+
+.sidebar__profile-data {
+  font-size: 16px;
+}
+
+.header__signout-button {
+  font-size: 16px;
+}

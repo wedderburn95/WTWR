@@ -1,0 +1,42 @@
+.modal__form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal__form-input:focus {
+  border-color: #333;
+  outline: none;
+}
+
+/* Optional: if ModalWithForm provides a modal container, style that too */
+.modal__container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal__alt-option-button {
+  width: 128px;
+  height: 36px;
+  border-radius: 4px;
+  padding-right: 16px;
+  padding-top: 25px;
+  /* gap: 8px; */
+  border: none;
+  background: transparent;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: black;
+  cursor: pointer;
+}

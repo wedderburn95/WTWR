@@ -1,0 +1,16 @@
+.clothes-section__header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.clothes-section__items {
+  width: 88px;
+  height: 25px;
+  top: 135px;
+  left: 499px;
+}
+
+.clothes-section__items-btn {
+  border: none;
+}

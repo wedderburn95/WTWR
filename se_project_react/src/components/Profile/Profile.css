@@ -1,0 +1,14 @@
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.profile__sidebar {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.profile__clothing-items {
+  flex: 1;
+}

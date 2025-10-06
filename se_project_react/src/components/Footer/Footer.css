@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  margin: 85px 24px 0 40px;
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: row;
+  max-width: 100%;
+  padding: 0;
+  color: #212121;
+  top: 1040px;
+  left: 40px;
+  font-family: Cabinet Grotesk;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: bottom;
+  /* margin: 0 1358px 20px 0;  This value restricted the space between the copyright and the logo. */
+}
