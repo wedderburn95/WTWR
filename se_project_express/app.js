@@ -26,6 +26,8 @@ app.use(
       const allowedOrigins = [
         "http://localhost:3000",
         "https://wtwr-six.vercel.app",
+        "https://wtwr-six.vercel.app",
+        "https://wtwr-96i6c3qxz-williams-projects-c348079e.vercel.app",
       ];
 
       // allow any Vercel preview domain
