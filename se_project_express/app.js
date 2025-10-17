@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/wtwr_db")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     logger.log("Connected to DB");
   })
