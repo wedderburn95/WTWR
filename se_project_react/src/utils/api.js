@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants.js";
 //const BASE_URL = "http://rnr.pakasak.com"; //prod base URL
 // const BASE_URL = "http://localhost:3001"; //dev base URL
 console.log("API Base URL in build:", import.meta.env.VITE_BASE_URL);
+console.log("API Base URL in build:", BASE_URL);
 
 export function checkResponse(res) {
   if (res.ok) {

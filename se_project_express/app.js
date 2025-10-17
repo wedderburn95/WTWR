@@ -22,15 +22,29 @@ app.use(requestLogger); // request logger
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://wtwr-96i6c3qxz-williams-projects-c348079e.vercel.app", // your deployed frontend,
-      "https://wtwr-six.vercel.app",
-      /\.vercel\.app$/,
-    ], // allow frontend origin
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // allow specific methods
-    allowedHeaders: ["Content-Type", "Authorization"], // allow specific headers
-    credentials: true, // allow cookies and auth headers
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://localhost:3000",
+        "https://wtwr-six.vercel.app",
+      ];
+
+      // allow any Vercel preview domain
+      const vercelRegex = /\.vercel\.app$/;
+
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        vercelRegex.test(origin)
+      ) {
+        callback(null, true);
+      } else {
+        console.log("❌ Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
