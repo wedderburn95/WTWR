@@ -22,7 +22,12 @@ app.use(requestLogger); // request logger
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://rnr.pakasak.com"], // allow frontend origin
+    origin: [
+      "http://localhost:3000",
+      "https://wtwr-96i6c3qxz-williams-projects-c348079e.vercel.app", // your deployed frontend,
+      "https://wtwr-six.vercel.app",
+      /\.vercel\.app$/,
+    ], // allow frontend origin
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // allow specific methods
     allowedHeaders: ["Content-Type", "Authorization"], // allow specific headers
     credentials: true, // allow cookies and auth headers
