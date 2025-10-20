@@ -3,84 +3,71 @@ require("dotenv").config({
 });
 
 const cors = require("cors");
-
 const mongoose = require("mongoose");
-
 const express = require("express");
-
 const { errors: celebrateErrors } = require("celebrate");
-
 const errorHandler = require("./middlewares/errorHandler");
-
 const mainRouter = require("./routes/index");
-
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
-
-app.use(requestLogger); // request logger
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:3000",
-        "https://wtwr-six.vercel.app",
-        "https://wtwr-six.vercel.app",
-        "https://wtwr-96i6c3qxz-williams-projects-c348079e.vercel.app",
-      ];
-
-      // allow any Vercel preview domain
-      const vercelRegex = /\.vercel\.app$/;
-
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        vercelRegex.test(origin)
-      ) {
-        callback(null, true);
-      } else {
-        console.log("❌ Blocked by CORS:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
-
-const { PORT = 3001 } = process.env;
-
 const logger = console;
+const { PORT = 3001, MONGO_URI } = process.env;
 
-app.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Server will crash now");
-  }, 0);
+// 🔹 Log environment for debugging
+logger.log(`🚀 Environment: ${process.env.NODE_ENV}`);
+logger.log(`📡 Using Mongo URI: ${MONGO_URI ? "Loaded ✅" : "Missing ❌"}`);
+
+// 🔹 Log CORS origins for debugging
+app.use(requestLogger);
+
+// ✅ CORS configuration
+const allowedOrigins = ["http://localhost:3000", "https://wtwr-six.vercel.app"];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  const vercelRegex = /\.vercel\.app$/;
+
+  if (allowedOrigins.includes(origin) || vercelRegex.test(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
 });
 
+// 🔹 Simple test endpoint
 app.get("/", (req, res) => {
-  res.send("API is working!");
+  res.send("✅ WTWR API is live!");
 });
 
+// 🔹 Connect to MongoDB (Render/Atlas)
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    logger.log("Connected to DB");
-  })
-  .catch((e) => console.error(e));
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => logger.log("✅ Connected to MongoDB Atlas"))
+  .catch((e) => logger.error("❌ DB connection error:", e));
 
 app.use(express.json());
 
+// 🔹 Main routes
 app.use("/", mainRouter);
 
-app.use(errorLogger); // error logger
-
-app.use(celebrateErrors()); // celebrate error handler
-
+// 🔹 Error logging and handling
+app.use(errorLogger);
+app.use(celebrateErrors());
 app.use(errorHandler);
 
+// 🔹 Start server
 app.listen(PORT, "0.0.0.0", () => {
-  logger.log(`Listening on port ${PORT}`);
+  logger.log(`🚀 Server running on port ${PORT}`);
 });
