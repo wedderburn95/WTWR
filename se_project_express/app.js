@@ -22,7 +22,12 @@ logger.log(`📡 Using Mongo URI: ${MONGO_URI ? "Loaded ✅" : "Missing ❌"}`);
 app.use(requestLogger);
 
 // ✅ CORS configuration
-const allowedOrigins = ["http://localhost:3000", "https://wtwr-six.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://wtwr-six.vercel.app",
+  "https://wtwr-git-main-williams-projects-c348079e.vercel.app",
+  "https://wtwr-lpbh8y6a0-williams-projects-c348079e.vercel.app",
+];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
