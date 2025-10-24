@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils/constants.js";
 // const BASE_URL = "http://localhost:3001"; //dev base URL
 console.log("API Base URL in build:", import.meta.env.VITE_BASE_URL);
 console.log("API Base URL in build:", BASE_URL);
+console.log("🌐 API Base URL currently set to:", BASE_URL);
 
 export function checkResponse(res) {
   if (res.ok) {
@@ -19,7 +20,7 @@ export async function getItems() {
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-
+  console.log("🔑 Sending token to API:", token);
   const response = await fetch(`${BASE_URL}/items`, {
     headers,
   });
